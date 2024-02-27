@@ -1,96 +1,100 @@
-<div class="title" >
+<div class="title">
   <div class="container">
     <!-- Conteúdo da primeira div -->
-    <div style="font-size: larger;">HISTÓRICO</div>
-    <div (click)="new_chat()" class="new" >
-      Novo chat 🆕
+    <div style="font-size: larger;margin-left: 10px;">HISTÓRICO</div>
+    <div (click)="new_chat()" class="new">
+      <div>Salvar e criar novo chat 💾🆕</div>
     </div>
 
     <!-- <div [ngClass]="{'can_save':canSave}" (click)="save_chat()" class="new1" >
       Salvar chat 💾
     </div> -->
+    <div class="recente">Chats recentes...</div>
 
-    
-    <div [ngClass]="{'selecionado': selectedIndex === index}" *ngFor="let chat of history;let index = index" class="new2" (click)="load_history(index)">
+    <div [ngClass]="{'selecionado': selectedIndex === index}" *ngFor="let chat of history;let index = index"
+      class="new2" (click)="load_history(index)">
 
-      <div class="remove_box" (click)="deletaItem(chat.id)">
-        <div class="remove">
-
+      <div class="remove_box">
+        <div class="save_hover" (click)="exportaItem(index)">
+          <div class="save"></div>
+          <!-- remover -->
+        </div>
+        <div class="remove_hover" (click)="deletaItem(chat.id)">
+          <div class="remove"></div>
         </div>
         <!-- remover -->
       </div>
-      <div class="remove_box" (click)="exportaItem()">
-        💾
-        <!-- remover -->
-      </div>
+
       <div>
         {{chat.mensagens[2].content.split(' ').slice(-7).join(' ')+'...'}}
 
       </div>
-      
-  
+
+
     </div>
   </div>
-  
+
   <div class="page">
 
-    
+
     <div class="container3">
       <!-- Conteúdo da primeira div -->
       ASSISTÊNCIA TÉCNICA - BOT
     </div>
-    
-  
-  
+
+
+
     <div class="container2">
-        
-        
-      <div id="main" >
-          
-          <div [ngClass]="{'item_answer': index % 2 === 0, 'item_question': index % 2 !== 0}" *ngFor="let item of presentation_array.slice(1); let index = index">
-            
-            <div [ngClass]="{'item_pfp_answer': index % 2 === 0, 'item_pfp': index % 2 !== 0}" >
-            </div>
-  
-            <div class="item-content-body" style="display: flex;flex-direction: column;justify-content: space-around;">
-              <div style="font-weight: bold;font-size: 17px;">
-                  {{index % 2 === 0?'Assistente':'Você'}}
-              </div>
-              <div class="item-content" [innerHTML]="substituirQuebrasDeLinha(item.content)">
-                {{item.content}}
-              </div>
-          
+
+
+      <div id="main">
+
+        <div [ngClass]="{'item_answer': index % 2 === 0, 'item_question': index % 2 !== 0}"
+          *ngFor="let item of presentation_array.slice(1); let index = index">
+
+          <div [ngClass]="{'item_pfp_answer': index % 2 === 0, 'item_pfp': index % 2 !== 0}">
           </div>
-      
-      </div>
-      <div *ngIf="loading" class="loading">
-        <span class="loading__dot"></span>
-        <span class="loading__dot"></span>
-        <span class="loading__dot"></span>
-      </div>
-      <div id="prompt-div">
-        <textarea [disabled]="loading" id='prompt-input' (keydown)="handleKeyDown($event)" (keyup.enter)="send_question(question)" type="text" [(ngModel)]="question">
+
+          <div class="item-content-body" style="display: flex;flex-direction: column;justify-content: space-around;">
+            <div style="font-weight: bold;font-size: 17px;">
+              {{index % 2 === 0?'Assistente':'Você'}}
+            </div>
+            <div class="item-content" [innerHTML]="substituirQuebrasDeLinha(item.content)">
+              {{item.content}}
+            </div>
+
+          </div>
+
+        </div>
+        <div *ngIf="loading" class="loading">
+          <span class="loading__dot"></span>
+          <span class="loading__dot"></span>
+          <span class="loading__dot"></span>
+        </div>
+        <div id="prompt-div">
+          <textarea [disabled]="loading" id='prompt-input' (keydown)="handleKeyDown($event)"
+            (keyup.enter)="send_question(question)" type="text" [(ngModel)]="question">
         </textarea>
-        <button class="send" (click)="send_question(question)" > 
-        </button>
-  
+          <button class="send" (click)="send_question(question)">
+          </button>
+
+        </div>
+
       </div>
-      
-    </div> 
-  
-  
-   
-   
+
+
+
+
+    </div>
+
+
+
+
   </div>
 
-  
-  
-
-</div>
 
 
-
-<!-- 
+  <!-- 
 
 <div class="container">
     

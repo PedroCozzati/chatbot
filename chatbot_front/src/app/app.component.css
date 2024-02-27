@@ -273,10 +273,14 @@ textarea:focus {
 }
 
 .new {
-  margin-top: 20px;
+  align-self: center;
+  align-items: center;
+  display: flex;
   padding: 15px;
+  margin-top: 30px;
   border-radius: 20px;
-  height: 2pc;
+  height: 5pc;
+  font-size: larger;
   background-color: #053861;
   border: 2px solid black;
 
@@ -308,7 +312,7 @@ textarea:focus {
   margin-bottom: 4vh;
   padding: 15px;
   background-color: #211e5254;
-  height: 4pc;
+  height: 6pc;
   border-radius: 20px;
   /* background-color: #050761; */
   /* border: 2px solid black; */
@@ -384,28 +388,26 @@ textarea:focus {
 }
 
 .remove_box {
-  align-items: self-end;
-  text-align: right;
-  align-self: flex-end;
-  justify-content: right;
-  margin-left: 90%;
+  align-items:self-start;
+  justify-content: space-between;
+  /* margin-left: 90%; */
   position: relative;
-  right:  0;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: right;
-  width: 18px;
-  height: 18px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 49px;
+  /* border: 2px solid rgb(253, 237, 237); */
+  margin-top: 0;
   margin-bottom: 10px;
-  border: 2px solid rgb(253, 237, 237);
-  justify-content: right;
+  /* justify-content: right; */
   /* border: 2px solid white; */
   /* z-index: 200; */
 }
 
 .remove {
-  width: 85%;
-  height: 85%;
+  margin: 4px;
+  width: 30px; 
+  height: 30px; 
   background-image: url('../../assets/close.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -415,7 +417,31 @@ textarea:focus {
   /* border: 2px solid white; */
   /* z-index: 200; */
 }
-
-.remove_box:hover{
+.save {
+  margin: 4px;
+  width: 30px; 
+  height: 30px; 
+  background-image: url('../../assets/pdf2.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 10px;  */
+  /* background-position: right; */
+  /* width: 20px; */
+  /* justify-content: right; */
+  /* border: 2px solid white; */
+  /* z-index: 200; */
+}
+.remove_hover:hover{
   background-color: red;
+}
+
+.save_hover:hover{
+  background-color: rgb(47, 0, 255);
+}
+
+.recente{
+  font-size: larger;
+  margin-top: 30px;
+  margin-left: 6px;
+  margin-bottom: 5px;
 }

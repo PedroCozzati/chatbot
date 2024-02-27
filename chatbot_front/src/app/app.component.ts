@@ -192,11 +192,21 @@ export class AppComponent implements OnInit {
 
   }
 
-  load_history(index: number) {
-    this.selectItem(index)
-    console.log(this.history[index].mensagens)
-    this.presentation_array = this.history[index].mensagens
-  }
+  async load_history(index: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+
+        this.selectItem(index)
+        console.log(this.history[index].mensagens)
+        this.presentation_array = this.history[index].mensagens
+      // Lógica de carregamento de histórico aqui
+      // Suponha que haja uma chamada assíncrona, por exemplo, para carregar dados de algum lugar
+      setTimeout(() => {
+        resolve();
+
+        // Resolvendo a promessa quando o carregamento estiver completo
+      }, 2000); // Simulando um atraso de 2 segundos para o propósito do exemplo
+    });
+  } 
 
   async save_history_on_db() {
     console.log(this.history)
@@ -225,7 +235,8 @@ export class AppComponent implements OnInit {
       })
   }
 
-  async exportaItem() {
+  async exportaItem(index:number) {
+    await this.load_history(index)
     this.convetToPDF()
   }
 
@@ -257,7 +268,7 @@ export class AppComponent implements OnInit {
       )
   }
 
-  public convetToPDF() {
+  public async convetToPDF() {
     const pdf = new jspdf.jsPDF({
       orientation: 'landscape', // Define a orientação como retrato
       unit: 'mm', // Define as unidades como milímetros
