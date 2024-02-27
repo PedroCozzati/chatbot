@@ -1,5 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-root',
@@ -17,50 +19,67 @@ export class AppComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-  ){}
+  ) { }
 
   ngOnInit(): void {
-    this.history.chats
+    this.presentation_array = [{}, { 'role': 'assistant', 'content': 'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬' }]
     // this.get_msg()
     this.get_history_db()
   }
 
-  presentation_array:any=[]
-  question= ''
+  presentation_array: any = []
+  question = ''
   answer = ''
-  is_question:any
-  history:any=[{'chats':[]}]
+  is_question: any
+  history: any
+  canSave = false
   selectedIndex: number = -1;
+  loading: boolean = false
 
   title = 'chatbot_front';
 
   selectItem(index: number) {
     this.selectedIndex = index;
   }
-  send_question(question: string){
-    this.is_question=true
-    this.presentation_array.push({'content':question})
-    this.question=''
+  send_question(question: string) {
+    this.is_question = true
+    this.presentation_array.push({ 'content': question })
+    this.question = ''
     this.get_answer(question)
   }
 
-  async get_msg(){
-    await this.http.get<any>('http://localhost:3000/chat', { headers: { "Content-Type": 'application/json' }})
-    .subscribe(response=> {
-      this.presentation_array = response
-      this.history=[{'chats':[this.presentation_array]}]
+  async get_msg() {
+    await this.http.get<any>('http://localhost:3000/chat', { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        this.presentation_array = response
+        // this.history.push({'mensagens':this.presentation_array})
 
-    })
+      })
   }
 
-  async get_answer(question:string){
-    await this.http.post('http://localhost:3000/chat', { 
+  async get_answer(question: string) {
+    this.loading = true
+    await this.http.post('http://localhost:3000/chat', {
       question: question
     })
-    .subscribe(response => {
-      console.log(response)
-      this.presentation_array.push({'content':response})
-    })
+      .subscribe(
+
+        (response) => {
+          console.log(response)
+          this.presentation_array.push({ 'role': 'assistant', 'content': response })
+          this.loading = false
+        },
+        (error) => {
+          this.presentation_array.push({
+            'role': 'assistant', 'content': 'Parece que ocorreu um erro na API, tente novamente mais tarde'
+          })
+          this.loading = false
+
+        },
+        () =>
+          this.loading = false
+
+      )
   }
 
   handleKeyDown(event: KeyboardEvent): void {
@@ -86,57 +105,195 @@ export class AppComponent implements OnInit {
     textarea.setSelectionRange(cursorPos + 1, cursorPos + 1);
   }
 
-  substituirQuebrasDeLinha(text:string): string {
-    return text.replace(/\n/g, '<br>');
+  substituirQuebrasDeLinha(text: string): string {
+    const regex = /```(.*?)```/g;
+
+    // Replace ''' with a container HTML element
+    const keywordRegex = /\b(if|else|for|while|def|class|and|or|not)\b/g;
+
+    // Regex para strings
+    const stringRegex = /'[^'\\]*(?:\\.[^'\\]*)*'|"[^"\\]*(?:\\.[^"\\]*)*"/g;
+
+    // Regex para números (inteiros ou decimais)
+    const numberRegex = /\b-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?\b/g;
+
+
+    text = text.replace(/\n/g, '<br>');
+    text = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    text = text.replace(regex, '<div class="isolatedtext">$1</div>');
+
+    // if (regex.test(text)) {
+    // text= text.replace(keywordRegex,'<div class="keywordlang">$?</div>')
+    // text=text.replace(stringRegex,'<div class="stringlang">$?</div>')
+    // text= text.replace(numberRegex,'<div class="numberlang">$?</div>')
+
+    // }
+    return text
   }
 
 
-  save_chat(){
+  save_chat() {
     this.selectedIndex = -1
     // let hist = this.get_history_db()
-   try{
-    if ((!this.history.chats.includes(this.presentation_array) && this.presentation_array.length>=4)) {
-      this.history['chats'].push(this.presentation_array)
+
+    if (!this.history || !this.history.mensagens) {
+      // Certifique-se de inicializar this.history se ainda não estiver definido
+      if (!this.history) {
+        this.history = { mensagens: [] };
+      }
     }
-  }catch{
-    this.history['chats'].push(this.presentation_array)
-  }
- 
+
+    let canPush = true
+
+    for (const item of this.history) {
+      if (item.mensagens === this.presentation_array) {
+        canPush = false;
+        break; // Se "itemDesejado" for encontrado em algum item da lista, pare a iteração
+      }
+    }
+
+
+    if (this.presentation_array.length >= 4 && canPush) {
+      this.canSave = true
+      this.history.unshift({ 'mensagens': this.presentation_array })
+    }
+
     console.log(this.history)
-    this.presentation_array=[{},{'role':'assistant','content':'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬'}]
+    this.canSave = false
     // this.save_history_on_db()
   }
 
-  load_history(index:number){
-    this.selectItem(index)
-    this.presentation_array = this.history.chats[index]
+  new_chat() {
+    this.selectedIndex = -1
+    if (!this.history || !this.history.mensagens) {
+      // Certifique-se de inicializar this.history se ainda não estiver definido
+      if (!this.history) {
+        this.history = { mensagens: [] };
+      }
+    }
+
+    let canPush = true
+
+    for (const item of this.history) {
+      if (item.mensagens === this.presentation_array) {
+        canPush = false;
+        break; // Se "itemDesejado" for encontrado em algum item da lista, pare a iteração
+      }
+    }
+
+
+    if (this.presentation_array.length >= 4 && canPush) {
+      this.canSave = true
+      this.history.unshift({ 'id': this.history.length + 1, 'mensagens': this.presentation_array })
+    }
+    this.presentation_array = [{}, { 'role': 'assistant', 'content': 'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬' }]
+
+    this.canSave = false
+
   }
 
-  async save_history_on_db(){
+  load_history(index: number) {
+    this.selectItem(index)
+    console.log(this.history[index].mensagens)
+    this.presentation_array = this.history[index].mensagens
+  }
+
+  async save_history_on_db() {
     console.log(this.history)
-    await this.http.post('http://localhost:3000/history', { 
+    await this.http.post('http://localhost:3000/history', {
       chats: this.history
     })
-    .subscribe(response => {
-      console.log(this.history)
-      // alert(response)
-      // this.presentation_array.push({'content':response})
-    })
+      .subscribe(response => {
+        console.log(this.history)
+        // alert(response)
+        // this.presentation_array.push({'content':response})
+      })
   }
 
-  async get_history_db(){
-    await this.http.get<any>('http://localhost:3000/history', { headers: { "Content-Type": 'application/json' }})
-    .subscribe(response=> {
-      console.log(response)
-      this.history = response[0]
-      this.presentation_array=[{},{'role':'assistant','content':'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬'}]
-      
-      if (response.length===0){
-        this.get_msg()
+  async get_history_db() {
+    await this.http.get<any>('http://localhost:3000/history', { headers: { "Content-Type": 'application/json' } })
+      .subscribe(response => {
+        console.log(response)
+        this.history = response.sort((a: { id: number; }, b: { id: number; }) => a.id - b.id);
+        // this.presentation_array=[{},{'role':'assistant','content':'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬'}]
+        console.log(this.history[0])
+        // if (response.length === 0) {
+        //   this.get_msg()
+        // }
+        // console.log(this.presentation_array)
+
+      })
+  }
+
+  async exportaItem() {
+    this.convetToPDF()
+  }
+
+  async deletaItem(id: number) {
+    this.convetToPDF()
+    await this.http.delete<any>(`http://localhost:3000/history/${id}`, { headers: { "Content-Type": 'application/json' } })
+      .subscribe((response) => {
+        this.history.re
+        let indexToRemove = this.history.findIndex((item: { id: number; }) => item.id === id);
+
+        if (indexToRemove !== -1) {
+          this.history.splice(indexToRemove, 1);
+          console.log("Item removido com sucesso!");
+        } else {
+          console.log("Item com o id especificado não encontrado na lista.");
+        }
+
+        if (response.length === 0) {
+          this.get_msg()
+        }
+        this.presentation_array = [{}, { 'role': 'assistant', 'content': 'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬' }]
+        // console.log(this.presentation_array)
+
+      }, () => {
+        this.save_history_on_db()
+        this.presentation_array = [{}, { 'role': 'assistant', 'content': 'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬' }]
+
       }
-      // console.log(this.presentation_array)
-
-    })
+      )
   }
 
+  public convetToPDF() {
+    const pdf = new jspdf.jsPDF({
+      orientation: 'landscape', // Define a orientação como retrato
+      unit: 'mm', // Define as unidades como milímetros
+      format: 'a5' // Define o formato como A4
+    });
+    const data = document.getElementById('main');
+    data!.style.backgroundColor = '#120D31';
+
+    const totalHeight = data!.scrollHeight;
+
+    const captureHeight = 297; // Altura de uma página A4 em milímetros
+    const scrollIncrement = 620; // Você pode ajustar isso conforme necessário
+    const pageHeight = 842; // Altura de uma página A4 em pixels
+
+    data!.scrollTop = 0;
+    const captureAndAddImage = async () => {
+      let canvas = await html2canvas(data!, { scrollX: 0, scrollY: -window.scrollY, windowHeight: captureHeight });
+
+      const imgWidth = 210; // Largura de uma página A4 em milímetros
+      const scaleFactor = imgWidth / canvas.width; // Fator de escala baseado na largura da página A4
+      const imgHeight = canvas.height * scaleFactor; // Calcula a altura proporcional
+
+      // Adiciona a imagem ao PDF
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, imgWidth, imgHeight);
+
+      if (data!.scrollTop + pageHeight < totalHeight) {
+        data!.scrollTop += scrollIncrement; // Rola para baixo por um incremento definido
+        pdf.addPage()
+        setTimeout(captureAndAddImage, 500);
+      } else {
+        pdf.save('new-file.pdf');
+        data!.style.backgroundColor = '';
+      }
+    };
+    captureAndAddImage();
+  }
 }
+
+

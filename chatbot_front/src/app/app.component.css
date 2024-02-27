@@ -1,299 +1,421 @@
-.title{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 
-.page{
-    /* margin-top: 2vh; */
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    overflow-y: none;
-    text-align: center;
-    background-image: url('../../assets/bsod_screen.png');
-    background-size: cover;
-    position: center;
-    background-position: 220px;
-    background-repeat: no-repeat;
-    
-    /* Centraliza horizontalmente */
-    /* Centraliza verticalmente */
-    /* height: 100%; */
+.page {
+  /* margin-top: 2vh; */
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-y: none;
+  text-align: center;
+  background-image: url('../../assets/bsod_screen.png');
+  background-size: cover;
+  position: center;
+  background-position: 220px;
+  background-repeat: no-repeat;
+
+  /* Centraliza horizontalmente */
+  /* Centraliza verticalmente */
+  /* height: 100%; */
 }
 
 .container {
-    position: fixed;
-    overflow-y: auto;
-    flex-direction: column;
-    justify-content: center;
-    width: 290px;
-    /* Centraliza horizontalmente */
-    align-items: center;
-    /* Centraliza verticalmente */
-    height: 100vh;
-    color: aliceblue;
-    padding: 2vh;
-    font-family: 'DOS-VGA';
-    border: 2px solid black;
-    background-color: rgb(12, 5, 29);
-    /* Ocupa toda a altura da janela do navegador */
+  position: fixed;
+  overflow-y: auto;
+  flex-direction: column;
+  justify-content: center;
+  width: 290px;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  height: 100vh;
+  color: aliceblue;
+  padding: 2vh;
+  font-family: 'DOS-VGA';
+  border: 2px solid black;
+  background-color: rgb(12, 5, 29);
+  /* Ocupa toda a altura da janela do navegador */
 }
 
 
 .container::-webkit-scrollbar {
 
-    border-radius:3vh;
-    width: 12px; /* largura da barra de rolagem */
-  }
-  
-  .container::-webkit-scrollbar-track {
-    background-clip: content-box;
-    border-radius: 3vh;
-    background-color: rgba(245, 245, 245, 0.607); /* cor do fundo da barra de rolagem */
-  }
-  
-  .container::-webkit-scrollbar-thumb {
-    height: 10% !important;
-    border-radius:3vh;
-    background-color: #1c244e; /* cor do indicador da barra de rolagem */
-  }
-  
-  .container::-webkit-scrollbar-thumb:hover {
-    height: 10% !important;
-    margin: 20px;
-    border-radius:3vh;
-    background-color: #0b0442; /* cor do indicador da barra de rolagem ao passar o mouse */
-  }
+  border-radius: 3vh;
+  width: 12px;
+  /* largura da barra de rolagem */
+}
+
+.container::-webkit-scrollbar-track {
+  background-clip: content-box;
+  border-radius: 3vh;
+  background-color: rgba(245, 245, 245, 0.607);
+  /* cor do fundo da barra de rolagem */
+}
+
+.container::-webkit-scrollbar-thumb {
+  height: 10% !important;
+  border-radius: 3vh;
+  background-color: #1c244e;
+  /* cor do indicador da barra de rolagem */
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  height: 10% !important;
+  margin: 20px;
+  border-radius: 3vh;
+  background-color: #0b0442;
+  /* cor do indicador da barra de rolagem ao passar o mouse */
+}
 
 
 .container3 {
-    margin-left: 360px;
-    text-align: left;
-    position: relative;
-   font-family: 'DOS-VGA';
-   font-size: larger;
-   font-weight: 500;
-   color: aliceblue;
-   top: 2vh;
-    /* Ocupa toda a altura da janela do navegador */
-}
-.container2 {
-    flex: 10;
-    margin-left: 340px;
-    
-    /* margin-right: 29vw; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    /* Centraliza horizontalmente */
-    align-items: center;
-    /* Centraliza verticalmente */
-    height: 100%;
-    /* Ocupa toda a altura da janela do navegador */
+  margin-left: 360px;
+  text-align: left;
+  position: relative;
+  font-family: 'DOS-VGA';
+  font-size: larger;
+  font-weight: 500;
+  color: aliceblue;
+  top: 2vh;
+  /* Ocupa toda a altura da janela do navegador */
 }
 
-.history{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* Centraliza horizontalmente */
-    align-items: center;
-    /* Centraliza verticalmente */
-    height: 100%;
-    border: 2px solid black;
+.container2 {
+  flex: 10;
+  margin-left: 340px;
+
+  /* margin-right: 29vw; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  height: 100%;
+  /* Ocupa toda a altura da janela do navegador */
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  height: 100%;
+  border: 2px solid black;
 }
 
 #main {
-    /* border: 0.1px solid rgba(245, 245, 245, 0.607); */
-    border-radius: 20px;
-    height: 70vh;
-    width: 35vw;
-    padding: 5vh;
-    overflow-y: auto;
-    margin-top: 2vh;
-    margin-bottom: 12VH;
+  /* border: 0.1px solid rgba(245, 245, 245, 0.607); */
+  /* border-radius: 20px; */
+  height: 70vh;
+  width: 35vw;
+  padding: 5vh;
+  overflow-y: auto;
+  margin-top: 5vh;
+  margin-bottom: 12VH;
 
-    color: aliceblue;
-    font-family: 'DOS-VGA';
-    font-size: large;
+  color: aliceblue;
+  font-family: 'DOS-VGA';
+  font-size: large;
 
 }
 
 #main::-webkit-scrollbar {
 
-    border-radius:3vh;
-    width: 12px; /* largura da barra de rolagem */
-  }
-  
-  #main::-webkit-scrollbar-track {
-    background-clip: content-box;
-    border-radius: 3vh;
-    background-color: rgba(245, 245, 245, 0.607); /* cor do fundo da barra de rolagem */
-  }
-  
-  #main::-webkit-scrollbar-thumb {
-    height: 10% !important;
-    border-radius:3vh;
-    background-color: #1c244e; /* cor do indicador da barra de rolagem */
-  }
-  
-  #main::-webkit-scrollbar-thumb:hover {
-    height: 10% !important;
-    margin: 20px;
-    border-radius:3vh;
-    background-color: #0b0442; /* cor do indicador da barra de rolagem ao passar o mouse */
-  }
-
-#prompt-div {
-    border: 1px solid rgba(245, 245, 245, 0.607);
-    border-radius: 5vh;
-    height: 6vh;
-    background-color: rgba(190, 190, 190, 0.027);
-    /* width: 39vw; */
-    color: aliceblue;
-    justify-content: space-around;
-    vertical-align: middle;
-    justify-items: center;
-    justify-self: center;
-    /* margin-top: 2vh; */
-    margin-bottom: 5vh;
-    font-family: "DOS-VGA";
-    font-size: large;
-    flex-direction: row;
-    position: fixed;
-    width: 35vw;
-
-    bottom: 0;
-    display: flex;
+  border-radius: 3vh;
+  width: 12px;
+  /* largura da barra de rolagem */
 }
 
-#prompt-div:hover{
-    background-color: rgba(190, 190, 190, 0.137);
+#main::-webkit-scrollbar-track {
+  background-clip: content-box;
+  border-radius: 3vh;
+  background-color: rgba(245, 245, 245, 0.607);
+  /* cor do fundo da barra de rolagem */
+}
+
+#main::-webkit-scrollbar-thumb {
+  height: 10% !important;
+  border-radius: 3vh;
+  background-color: #1c244e;
+  /* cor do indicador da barra de rolagem */
+}
+
+#main::-webkit-scrollbar-thumb:hover {
+  height: 10% !important;
+  margin: 20px;
+  border-radius: 3vh;
+  background-color: #0b0442;
+  /* cor do indicador da barra de rolagem ao passar o mouse */
+}
+
+#prompt-div {
+  border: 1px solid rgba(245, 245, 245, 0.607);
+  border-radius: 5vh;
+  height: 6vh;
+  background-color: rgba(190, 190, 190, 0.027);
+  /* width: 39vw; */
+  color: aliceblue;
+  justify-content: space-around;
+  vertical-align: middle;
+  justify-items: center;
+  justify-self: center;
+  /* margin-top: 2vh; */
+  margin-bottom: 5vh;
+  font-family: "DOS-VGA";
+  font-size: large;
+  flex-direction: row;
+  position: fixed;
+  width: 35vw;
+
+  bottom: 0;
+  display: flex;
+}
+
+#prompt-div:hover {
+  background-color: rgba(190, 190, 190, 0.137);
 }
 
 #prompt-input {
 
-    overflow:hidden;
-    resize: none;
-    /* border: 1px solid rgba(245, 245, 245, 0.607); */
-    /* border-radius: 5vh; */
-    width: 70%;
-    border: none;
-    height: 4vh;
-    background-color: rgba(190, 190, 190, 0);
-    color: aliceblue;
-    /* padding-left: 0.8vw; */
-    /* padding-right: 0.8vw; */
-    font-family: "DOS-VGA";
-    bottom: 10;
-    padding-left: 2vh;
-    padding-top: 1.8vh;
-    font-size:large;
-    flex-direction: row;
-    justify-self: center;
-    display: flex;
-    /* margin-bottom: 5vh; */
+  overflow: hidden;
+  resize: none;
+  /* border: 1px solid rgba(245, 245, 245, 0.607); */
+  /* border-radius: 5vh; */
+  width: 70%;
+  border: none;
+  height: 4vh;
+  background-color: rgba(190, 190, 190, 0);
+  color: aliceblue;
+  /* padding-left: 0.8vw; */
+  /* padding-right: 0.8vw; */
+  font-family: "DOS-VGA";
+  bottom: 10;
+  padding-left: 2vh;
+  padding-top: 1.8vh;
+  font-size: large;
+  flex-direction: row;
+  justify-self: center;
+  display: flex;
+  /* margin-bottom: 5vh; */
 }
 
 textarea:focus {
-    border: none !important;
-    outline: none;
+  border: none !important;
+  outline: none;
 }
 
 .item_question {
-    /* display: flex;
+  /* display: flex;
     flex-direction: row; */
-    line-height: 1.4;
-    margin: 2vh;
-    margin-bottom: 5vh;
-    text-align: right;
+  line-height: 1.4;
+  margin: 2vh;
+  margin-bottom: 5vh;
+  text-align: right;
 
 }
 
 .item_answer {
-    /* display: flex;
+  /* display: flex;
     flex-direction: row; */
-    line-height: 1.4;
-    margin-bottom: 9vh;
-    text-align: left;
+  line-height: 1.4;
+  margin-bottom: 9vh;
+  text-align: left;
 
 }
 
 .item_pfp {
-    height: 20px;
-    width: 20px;
-    border: 1px solid white;
-    border-radius: 50%;
-    background-color: white;
-    margin-left: 2vh;
-    align-items: flex-end;
-    align-self: flex-end;
-    float: right;
+  height: 20px;
+  width: 20px;
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 2vh;
+  align-items: flex-end;
+  align-self: flex-end;
+  float: right;
 }
 
 .item_pfp_answer {
-    height: 20px;
-    width: 20px;
-    border: 1px solid #09c2c2;
-    border-radius: 50%;
-    background-color: #09c2c2;
-    margin-right: 2vh;
-    align-items: flex-start;
-    align-self: flex-start;
-    float: left;
+  height: 20px;
+  width: 20px;
+  border: 1px solid #09c2c2;
+  border-radius: 50%;
+  background-color: #09c2c2;
+  margin-right: 2vh;
+  align-items: flex-start;
+  align-self: flex-start;
+  float: left;
 }
 
-.send{
-    width: 5vh;
-    margin-top: 1vh;
-    background-image: url('../../assets/send.png') ;
-    background-repeat: no-repeat;
-    background-size: contain; /* ajustar tamanho da imagem */
-    border: none; /* remover borda */
-    background-color: transparent;
-    cursor: pointer; 
-    filter: saturate(10%)
+.send {
+  width: 5vh;
+  margin-top: 1vh;
+  background-image: url('../../assets/send.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* ajustar tamanho da imagem */
+  border: none;
+  /* remover borda */
+  background-color: transparent;
+  cursor: pointer;
+  filter: saturate(10%)
 }
 
-.send:hover{
-    filter: saturate(120%) hue-rotate(290deg) brightness(140%)
+.send:hover {
+  filter: saturate(120%) hue-rotate(290deg)
 }
 
-.new{
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 20px;
-    height: 2pc;
-    background-color: #053861;
-    border: 2px solid black;
-
-}
-
-.new:hover{
-    background-color: rgb(136, 127, 255)
-}
-
-.new2{
-    margin-top: 20px;
-    margin-bottom: 4vh;
-    padding: 15px;
-    height: 2pc;
-    border-radius: 20px;
-    /* background-color: #050761; */
-    /* border: 2px solid black; */
+.new {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 20px;
+  height: 2pc;
+  background-color: #053861;
+  border: 2px solid black;
 
 }
 
+.new:hover {
+  background-color: rgb(136, 127, 255)
+}
 
-.new2:hover{
-    background-color: rgba(136, 127, 255, 0.589)
+
+.new1 {
+  margin-top: 20px;
+  padding: 15px;
+  color: #33383b50;
+  ;
+  border-radius: 20px;
+  height: 2pc;
+  background-color: #33383b50;
+  border: 2px solid rgba(0, 0, 0, 0.377);
+
+}
+
+.new1:hover {
+  /* background-color: rgba(74, 74, 78, 0.082) */
+}
+
+.new2 {
+  margin-top: 20px;
+  margin-bottom: 4vh;
+  padding: 15px;
+  background-color: #211e5254;
+  height: 4pc;
+  border-radius: 20px;
+  /* background-color: #050761; */
+  /* border: 2px solid black; */
+
+}
+
+
+.new2:hover {
+  background-color: rgba(136, 127, 255, 0.589)
 }
 
 
 
 .selecionado {
-    /* Estilo quando o elemento está selecionado */
-    background-color: rgba(120, 118, 175, 0.658);
+  /* Estilo quando o elemento está selecionado */
+  background-color: rgba(120, 118, 175, 0.658);
+}
+
+.loading {
+  height: 2vh;
+  width: 1vw;
+  position: relative;
+}
+
+.loading__dot {
+  animation: dot ease-in-out 1s infinite;
+  background-color: grey;
+  display: inline-block;
+  border-radius: 50%;
+  height: 15px;
+  margin: 10px;
+  width: 15px;
+}
+
+.loading__dot:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+
+.loading__dot:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes dot {
+  0% {
+    background-color: rgb(241, 243, 252);
+    transform: scale(1);
   }
+
+  50% {
+    background-color: #8769f0;
+    transform: scale(1.3);
+  }
+
+  100% {
+    background-color: rgb(195, 206, 245);
+    transform: scale(1);
+  }
+}
+
+
+.can_save {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 20px;
+  height: 2pc;
+  color: aliceblue;
+  background-color: #053861;
+  border: 2px solid black;
+}
+
+.can_save:hover {
+  background-color: rgba(136, 127, 255, 0.589)
+}
+
+.remove_box {
+  align-items: self-end;
+  text-align: right;
+  align-self: flex-end;
+  justify-content: right;
+  margin-left: 90%;
+  position: relative;
+  right:  0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 10px;
+  border: 2px solid rgb(253, 237, 237);
+  justify-content: right;
+  /* border: 2px solid white; */
+  /* z-index: 200; */
+}
+
+.remove {
+  width: 85%;
+  height: 85%;
+  background-image: url('../../assets/close.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-position: right; */
+  /* width: 20px; */
+  /* justify-content: right; */
+  /* border: 2px solid white; */
+  /* z-index: 200; */
+}
+
+.remove_box:hover{
+  background-color: red;
+}

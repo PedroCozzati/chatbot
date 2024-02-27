@@ -3,8 +3,8 @@ import { QuestionDto } from './app.dto';
 import { messages, openai } from './main';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { HistoryDto } from './history/history.dto';
-import { HistoryEntity } from './history/history.entity';
+import { HistoryEntity, ListaMensagens, Mensagem } from './history/history.entity';
+import { HistoryDto, ListaMensagensDto, MensagemDto } from './history/history.dto';
 
 @Injectable()
 export class AppService {
@@ -13,14 +13,12 @@ export class AppService {
 
   async sendQuestion(questions: QuestionDto) {
     try {
-      console.log(messages)
       messages.push({ 'role': 'user', 'content': questions.question })
       const resp = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-16k",
         messages: messages
       })
       messages.push({ 'role': 'assistant', 'content': resp.choices[0].message.content })
-      console.log(messages)
       return resp.choices[0].message.content
     }
     catch (exception) {
@@ -35,14 +33,17 @@ export class AppService {
     catch (exception) {
       throw exception
     }
-
-
   }
 
-  async save_history(history: HistoryDto) {
+  async save_history(lista: ListaMensagensDto[]) {
+    let novaLista;
     try {
       this.clearDatabase().then(async ()=>{
-        await this.historyRepository.save(history.chats)
+          for (const listaInterna of lista['chats']) {
+            novaLista = new ListaMensagensDto();
+            novaLista.mensagens =listaInterna['mensagens'];
+          await this.historyRepository.save(novaLista);
+        }
       })
     }
     catch (exception) {
@@ -64,6 +65,14 @@ export class AppService {
     const repository = await this.historyRepository; // Obtém o repositório da sua entidade
     await repository.clear(); // Limpa todos os registros da tabela associada à entidade
   }
-  
+
+  async deletaitem(id: number) {
+    try {
+      await this.historyRepository.delete({"id": id })
+      return;
+    } catch (exception) {
+      throw exception
+    }
+  }
 
 }
