@@ -6,6 +6,8 @@ Chatbot implementando a API do chatgpt.
 
 ![image](https://github.com/PedroCozzati/chatbot/assets/80106385/4571b769-2dec-44b2-82c3-145ee08a3c61)
 
-https://github.com/PedroCozzati/chatbot/assets/80106385/9bfae743-1ed1-4b9e-9199-3f0c49912d57
+
+https://github.com/PedroCozzati/chatbot/assets/80106385/77b4b4cd-16fb-46b3-a6d9-452878c66f39
+
 
 OBS: Sistema de histórico em construção
