@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { QuestionDto } from './app.dto';
 import { messages, openai } from './main';
-import { Repository } from 'typeorm';
-import { InjectRepository } from '@nestjs/typeorm';
+// import { Repository } from 'typeorm';
+// import { InjectRepository } from '@nestjs/typeorm';
 // import { HistoryEntity, ListaMensagens, Mensagem } from './history/history.entity';
 // import { HistoryDto, ListaMensagensDto, MensagemDto } from './history/history.dto';
 
