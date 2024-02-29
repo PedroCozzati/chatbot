@@ -1,5 +1,6 @@
 # chatbot
-Chatbot implementando a API do chatgpt, utilizando engenharia de prompt
+Chatbot implementando a API do chatgpt.
+É utilizado engenharia de prompt para direcionar o chatgpt, especificamente com o persona pattern - mais informações: https://arxiv.org/abs/2302.11382
 
 ![image](https://github.com/PedroCozzati/chatbot/assets/80106385/d21a98cf-74fd-4ea8-a038-eb71342482bb)
 
