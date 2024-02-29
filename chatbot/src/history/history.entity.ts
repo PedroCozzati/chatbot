@@ -1,37 +1,37 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+// import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
-export class HistoryEntity {
+// @Entity()
+// export class HistoryEntity {
     
-    @PrimaryGeneratedColumn()
-    id: number;
+//     @PrimaryGeneratedColumn()
+//     id: number;
 
-    @Column('json', { nullable: true })
-    mensagens: any[]
+//     @Column('json', { nullable: true })
+//     mensagens: any[]
 
-}
+// }
 
 
-@Entity()
-export class ListaMensagens {
-    @PrimaryGeneratedColumn()
-    id: number;
+// @Entity()
+// export class ListaMensagens {
+//     @PrimaryGeneratedColumn()
+//     id: number;
 
-    @OneToMany(() => Mensagem, mensagem => mensagem.lista)
-    mensagens: Mensagem[];
-}
+//     @OneToMany(() => Mensagem, mensagem => mensagem.lista)
+//     mensagens: Mensagem[];
+// }
 
-@Entity()
-export class Mensagem {
-    @PrimaryGeneratedColumn()
-    id: number;
+// @Entity()
+// export class Mensagem {
+//     @PrimaryGeneratedColumn()
+//     id: number;
 
-    @Column({ type: 'text' })
-    role: string;
+//     @Column({ type: 'text' })
+//     role: string;
 
-    @Column({ type: 'text' })
-    content: string;
+//     @Column({ type: 'text' })
+//     content: string;
 
-    @ManyToOne(() => ListaMensagens, lista => lista.mensagens)
-    lista: ListaMensagens;
-}
+//     @ManyToOne(() => ListaMensagens, lista => lista.mensagens)
+//     lista: ListaMensagens;
+// }

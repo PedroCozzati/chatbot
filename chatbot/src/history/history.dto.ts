@@ -1,16 +1,16 @@
-export class HistoryDto {
-    chats:[]
-}
+// export class HistoryDto {
+//     chats:[]
+// }
 
-export class ListaMensagensDto {
+// export class ListaMensagensDto {
 
-    mensagens: MensagemDto[];
-}
+//     mensagens: MensagemDto[];
+// }
 
-export class MensagemDto {
+// export class MensagemDto {
 
-    role?: string;
+//     role?: string;
 
-    content?: string;
+//     content?: string;
 
-}
+// }
