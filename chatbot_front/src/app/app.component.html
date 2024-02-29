@@ -1,14 +1,10 @@
 <div class="title">
-  <div class="container">
-    <!-- Conteúdo da primeira div -->
+  <div *ngIf="is_mobile==false" class="container">
     <div style="font-size: larger;margin-left: 10px;">HISTÓRICO</div>
     <div (click)="new_chat()" class="new">
       <div>Salvar e criar novo chat 💾🆕</div>
     </div>
 
-    <!-- <div [ngClass]="{'can_save':canSave}" (click)="save_chat()" class="new1" >
-      Salvar chat 💾
-    </div> -->
     <div class="recente">Chats recentes...</div>
 
     <div [ngClass]="{'selecionado': selectedIndex === index}" *ngFor="let chat of history;let index = index"
@@ -17,37 +13,31 @@
       <div class="remove_box">
         <div class="save_hover" (click)="exportaItem(index)">
           <div class="save"></div>
-          <!-- remover -->
         </div>
         <div class="remove_hover" (click)="deletaItem(chat.id)">
           <div class="remove"></div>
         </div>
-        <!-- remover -->
       </div>
-
-      <div>
-        {{chat.mensagens[2].content.split(' ').slice(-7).join(' ')+'...'}}
-
-      </div>
+        {{chat.mensagens[2]?.content?.split(' ').slice(-7).join(' ')+'...'}}
 
 
     </div>
   </div>
 
-  <div class="page">
+  <div [ngClass]="{'mobile_viz':is_mobile}" class="page">
 
 
-    <div class="container3">
+    <div [ngClass]="{'mobile_viz_title':is_mobile}" class="container3">
       <!-- Conteúdo da primeira div -->
       ASSISTÊNCIA TÉCNICA - BOT
     </div>
 
 
 
-    <div class="container2">
+    <div [ngClass]="{'mobile_viz_container':is_mobile}" class="container2">
 
 
-      <div id="main">
+      <div [ngClass]="{'mobile_viz_main':is_mobile}"  id="main">
 
         <div [ngClass]="{'item_answer': index % 2 === 0, 'item_question': index % 2 !== 0}"
           *ngFor="let item of presentation_array.slice(1); let index = index">
@@ -71,7 +61,7 @@
           <span class="loading__dot"></span>
           <span class="loading__dot"></span>
         </div>
-        <div id="prompt-div">
+        <div [ngClass]="{'mobile_viz_prompt':is_mobile}" id="prompt-div">
           <textarea [disabled]="loading" id='prompt-input' (keydown)="handleKeyDown($event)"
             (keyup.enter)="send_question(question)" type="text" [(ngModel)]="question">
         </textarea>

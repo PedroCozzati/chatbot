@@ -30,6 +30,35 @@ body, html {
     font-family: 'Courier New', Courier, monospace; /* Usa uma fonte monoespaçada */
 }
 
+.isolatedtext::-webkit-scrollbar {
+
+    /* border-radius: 3vh; */
+    width: 5px;
+    /* largura da barra de rolagem */
+  }
+  
+  .isolatedtext::-webkit-scrollbar-track {
+    background-clip: content-box;
+    /* border-radius: 3vh; */
+    background-color: rgba(245, 245, 245, 0.607);
+    /* cor do fundo da barra de rolagem */
+  }
+  
+  .isolatedtext::-webkit-scrollbar-thumb {
+    height: 10% !important;
+    /* border-radius: 3vh; */
+    background-color: #1c244e;
+    /* cor do indicador da barra de rolagem */
+  }
+  
+  .isolatedtext::-webkit-scrollbar-thumb:hover {
+    height: 10% !important;
+    margin: 20px;
+    /* border-radius: 3vh; */
+    background-color: #0b0442;
+    /* cor do indicador da barra de rolagem ao passar o mouse */
+  }
+
 .keywordlang {
     color: blue; /* Cor para palavras-chave */
 }

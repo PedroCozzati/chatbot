@@ -23,6 +23,19 @@
   /* height: 100%; */
 }
 
+.mobile_viz{
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow-y: none;
+  text-align: center;
+  background-image: url('../../assets/bsod_screen.png');
+  background-size: cover;
+  position:center;
+  background-position: 0px;
+  background-repeat: no-repeat;
+}
+
 .container {
   position: fixed;
   overflow-y: auto;
@@ -84,6 +97,17 @@
   /* Ocupa toda a altura da janela do navegador */
 }
 
+.mobile_viz_title{
+  margin-left: 0px;
+  text-align: center;
+  position: relative;
+  font-family: 'DOS-VGA';
+  font-size: larger;
+  font-weight: 500;
+  color: aliceblue;
+  top: 2vh;
+}
+
 .container2 {
   flex: 10;
   margin-left: 340px;
@@ -97,6 +121,19 @@
   /* Centraliza verticalmente */
   height: 100%;
   /* Ocupa toda a altura da janela do navegador */
+}
+
+.mobile_viz_container{
+  margin-left: 10px;
+
+  /* margin-right: 29vw; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* Centraliza horizontalmente */
+  align-items: center;
+  /* Centraliza verticalmente */
+  height: 100%;
 }
 
 .history {
@@ -116,6 +153,7 @@
   height: 70vh;
   width: 35vw;
   padding: 5vh;
+  padding-right: 2vw;
   overflow-y: auto;
   margin-top: 5vh;
   margin-bottom: 12VH;
@@ -124,6 +162,21 @@
   font-family: 'DOS-VGA';
   font-size: large;
 
+}
+
+.mobile_viz_main{
+  height: 70vh !important;
+  width: 80vw !important;
+  padding: 0vh !important;
+  padding-top: 5vh !important;
+  overflow-y: auto !important;
+  margin-top: 5vh !important;
+  margin-bottom: 5VH !important;
+  padding-right:20px;
+
+  color: aliceblue !important;
+  font-family: 'DOS-VGA' !important;
+  font-size: large !important;
 }
 
 #main::-webkit-scrollbar {
@@ -149,7 +202,6 @@
 
 #main::-webkit-scrollbar-thumb:hover {
   height: 10% !important;
-  margin: 20px;
   border-radius: 3vh;
   background-color: #0b0442;
   /* cor do indicador da barra de rolagem ao passar o mouse */
@@ -173,6 +225,29 @@
   flex-direction: row;
   position: fixed;
   width: 35vw;
+
+  bottom: 0;
+  display: flex;
+}
+
+.mobile_viz_prompt {
+  border: 1px solid rgba(245, 245, 245, 0.607) !important;
+  border-radius: 5vh !important;
+  height: 6vh !important;
+  background-color: rgba(190, 190, 190, 0.027) !important;
+  /* width: 39vw; */
+  color: aliceblue !important;
+  justify-content: space-around !important;
+  vertical-align: middle !important;
+  justify-items: center !important;
+  justify-self: center !important;
+  /* margin-top: 2vh; */
+  margin-bottom: 5vh !important;
+  font-family: "DOS-VGA" !important;
+  font-size: large !important;
+  flex-direction: row !important;
+  position: fixed !important;
+  width: 77vw !important;
 
   bottom: 0;
   display: flex;
@@ -217,6 +292,7 @@ textarea:focus {
   line-height: 1.4;
   margin: 2vh;
   margin-bottom: 5vh;
+  /* margin-right: 5px; */
   text-align: right;
 
 }
@@ -226,6 +302,7 @@ textarea:focus {
     flex-direction: row; */
   line-height: 1.4;
   margin-bottom: 9vh;
+  margin-right: 20px;
   text-align: left;
 
 }

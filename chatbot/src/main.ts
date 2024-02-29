@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { json } from 'express';
-const { OpenAI } = require("openai")
+import { OpenAI } from "openai";
 import * as dotenv from 'dotenv';
 
 export let openai;

@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,23 @@ export class AppComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-  ) { }
+    private breakpointObserver: BreakpointObserver,
+
+  ) { 
+
+       // detect screen size changes
+  this.breakpointObserver.observe([
+    "(max-width: 800px)"
+  ]).subscribe((result: BreakpointState) => {
+    if (result.matches) {
+        this.is_mobile =true
+    } else {
+       this.is_mobile =false
+    }
+  });
+
+  }
+
 
   ngOnInit(): void {
     this.presentation_array = [{}, { 'role': 'assistant', 'content': 'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬' }]
@@ -29,9 +46,10 @@ export class AppComponent implements OnInit {
 
   presentation_array: any = []
   question = ''
+  is_mobile=false
   answer = ''
   is_question: any
-  history: any
+  history: any=[]
   canSave = false
   selectedIndex: number = -1;
   loading: boolean = false
@@ -136,16 +154,16 @@ export class AppComponent implements OnInit {
     this.selectedIndex = -1
     // let hist = this.get_history_db()
 
-    if (!this.history || !this.history.mensagens) {
-      // Certifique-se de inicializar this.history se ainda não estiver definido
-      if (!this.history) {
-        this.history = { mensagens: [] };
-      }
-    }
+    // if (!this.history || !this.history.mensagens) {
+    //   // Certifique-se de inicializar this.history se ainda não estiver definido
+    //   if (!this.history) {
+    //     this.history = [{ mensagens: [] }];
+    //   }
+    // }
 
     let canPush = true
 
-    for (const item of this.history) {
+    for (let item of this.history) {
       if (item.mensagens === this.presentation_array) {
         canPush = false;
         break; // Se "itemDesejado" for encontrado em algum item da lista, pare a iteração
@@ -155,7 +173,7 @@ export class AppComponent implements OnInit {
 
     if (this.presentation_array.length >= 4 && canPush) {
       this.canSave = true
-      this.history.unshift({ 'mensagens': this.presentation_array })
+      this.history.push({ 'mensagens': this.presentation_array })
     }
 
     console.log(this.history)
@@ -165,12 +183,12 @@ export class AppComponent implements OnInit {
 
   new_chat() {
     this.selectedIndex = -1
-    if (!this.history || !this.history.mensagens) {
-      // Certifique-se de inicializar this.history se ainda não estiver definido
-      if (!this.history) {
-        this.history = { mensagens: [] };
-      }
-    }
+    // if (!this.history || !this.history.mensagens) {
+    //   // Certifique-se de inicializar this.history se ainda não estiver definido
+    //   if (!this.history) {
+    //     this.history = [{ mensagens: [] }];
+    //   }
+    // }
 
     let canPush = true
 
@@ -184,7 +202,7 @@ export class AppComponent implements OnInit {
 
     if (this.presentation_array.length >= 4 && canPush) {
       this.canSave = true
-      this.history.unshift({ 'id': this.history.length + 1, 'mensagens': this.presentation_array })
+      this.history.push({ 'id': this.history.length + 1, 'mensagens': this.presentation_array })
     }
     this.presentation_array = [{}, { 'role': 'assistant', 'content': 'Olá! 👋 Como posso te ajudar hoje na montagem de computadores e assistência técnica? Estou à disposição para responder suas perguntas e auxiliar no que precisar. 🖥️💬' }]
 

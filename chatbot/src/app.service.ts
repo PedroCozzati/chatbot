@@ -38,10 +38,11 @@ export class AppService {
   async save_history(lista: ListaMensagensDto[]) {
     let novaLista;
     try {
-      this.clearDatabase().then(async ()=>{
+      await this.clearDatabase().then(async ()=>{
           for (const listaInterna of lista['chats']) {
             novaLista = new ListaMensagensDto();
             novaLista.mensagens =listaInterna['mensagens'];
+          console.log(novaLista)
           await this.historyRepository.save(novaLista);
         }
       })
