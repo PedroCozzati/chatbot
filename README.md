@@ -7,3 +7,4 @@ Chatbot implementando a API do chatgpt, utilizando engenharia de prompt
 
 https://github.com/PedroCozzati/chatbot/assets/80106385/9bfae743-1ed1-4b9e-9199-3f0c49912d57
 
+OBS: Sistema de histórico em construção
