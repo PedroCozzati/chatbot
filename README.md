@@ -1,8 +1,8 @@
-# chatbot
-Chatbot implementando a API do chatgpt.<br>
+# Chatbot
+Chatbot implementando a API do chatgpt.<br> 
+O tema do chatbot é "Montagem e assistência técnica de computadores, então é possível pedir dicas e ajuda para resolver problemas de software,<br> além de dicas para montar um pc como melhores configurações, entre outras...<br>
 
 ##Como funciona?
-
 É utilizado engenharia de prompt para direcionar o chatgpt, especificamente com o persona pattern - mais informações: https://arxiv.org/abs/2302.11382 <br>
 
 ##Tecnologias utilizadas:
