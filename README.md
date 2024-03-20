@@ -1,7 +1,10 @@
 # chatbot
-Chatbot implementando a API do chatgpt.
+Chatbot implementando a API do chatgpt.<br>
+
 ##Como funciona?
-É utilizado engenharia de prompt para direcionar o chatgpt, especificamente com o persona pattern - mais informações: https://arxiv.org/abs/2302.11382
+
+É utilizado engenharia de prompt para direcionar o chatgpt, especificamente com o persona pattern - mais informações: https://arxiv.org/abs/2302.11382 <br>
+
 ##Tecnologias utilizadas:
  - Angular
  - NestJS
