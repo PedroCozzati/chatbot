@@ -10,4 +10,5 @@ Chatbot implementando a API do chatgpt.
 https://github.com/PedroCozzati/chatbot/assets/80106385/77b4b4cd-16fb-46b3-a6d9-452878c66f39
 
 
-OBS: Sistema de histórico em construção
+OBS: Sistema de histórico em construção <br>
+Link da aplicação na WE: https://main--chatbot-ia-angular.netlify.app/
